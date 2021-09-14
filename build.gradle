@@ -1,18 +1,20 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
     id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
 group 'com.github.vootelerotov.intellij.chill.pill'
 version '1.0-SNAPSHOT'
 
+sourceCompatibility = 8
+targetCompatibility = 8
+
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
     implementation 'org.ow2.asm:asm:9.2'
 }
 
@@ -23,11 +25,5 @@ jar {
 }
 
 shadowJar {
-
-    dependencies {
-        include(dependency('org.ow2.asm:asm:9.2'))
-        include(dependency('org.jetbrains.kotlin:kotlin-stdlib'))
-    }
-
     relocate 'org.objectweb.asm', 'com.github.vootelerotov.intellij.chill.pill.asm'
 }
