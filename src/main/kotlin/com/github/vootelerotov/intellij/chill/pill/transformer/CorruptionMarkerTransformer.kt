@@ -22,6 +22,8 @@ class CorruptionMarkerTransformer : ClassFileTransformer {
       return null;
     }
 
+    println("This is for debugging")
+    println("Another line for debugging")
     return patchMarkAsDirty(classfileBuffer!!)
   }
 
