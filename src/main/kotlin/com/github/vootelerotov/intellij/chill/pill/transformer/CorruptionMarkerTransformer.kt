@@ -3,8 +3,6 @@ package com.github.vootelerotov.intellij.chill.pill.transformer
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import java.lang.instrument.ClassFileTransformer
-import java.nio.file.Files
-import java.nio.file.Path
 import java.security.ProtectionDomain
 
 class CorruptionMarkerTransformer : ClassFileTransformer {
@@ -32,8 +30,6 @@ class CorruptionMarkerTransformer : ClassFileTransformer {
     val classWriter = ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES)
     classReader.accept(CorruptionMarkerVisitor(classWriter), ClassReader.SKIP_FRAMES);
 
-    val bytes = classWriter.toByteArray()
-    Files.write(Path.of("/tmp", "dump.class"), bytes)
-    return bytes
+    return classWriter.toByteArray()
   }
 }
